@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[LitCTF 2023]导弹迷踪打开环境，查看源码，打开game.js，直接找  [HCTF 2018]WarmUp 查看源码  查看source.php  isset()检测变量是否已设置并且非 NULL 12isset ( mixed $var [, mixed $... ] ) : bool &#x2F;&#x2F;mixed 说明一个参数可以接受多种不同的（但不一定是所有的）类型   查找 string 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mosh">
+<meta property="og:url" content="http://example.com/2024/07/18/0718/index.html">
+<meta property="og:site_name" content="mosh">
+<meta property="og:description" content="[LitCTF 2023]导弹迷踪打开环境，查看源码，打开game.js，直接找  [HCTF 2018]WarmUp 查看源码  查看source.php  isset()检测变量是否已设置并且非 NULL 12isset ( mixed $var [, mixed $... ] ) : bool &#x2F;&#x2F;mixed 说明一个参数可以接受多种不同的（但不一定是所有的）类型   查找 string 在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180206552.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180206551.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204754.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204756.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207756.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207643.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204091.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207469.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207330.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204207.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180208750.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204969.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209913.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204931.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209889.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209335.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204438.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210186.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204644.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210509.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204532.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204826.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210966.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180211882.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204496.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204016.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180211866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204130.png">
+<meta property="article:published_time" content="2024-07-17T17:43:32.369Z">
+<meta property="article:modified_time" content="2024-07-17T18:12:39.019Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180206552.png">
+  
+  
+  
+  <title>mosh</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-18 01:43" pubdate>
+          July 18, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="LitCTF-2023-导弹迷踪"><a href="#LitCTF-2023-导弹迷踪" class="headerlink" title="[LitCTF 2023]导弹迷踪"></a>[LitCTF 2023]导弹迷踪</h2><p>打开环境，查看源码，打开game.js，直接找<img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180206552.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180206551.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="HCTF-2018-WarmUp"><a href="#HCTF-2018-WarmUp" class="headerlink" title="[HCTF 2018]WarmUp"></a>[HCTF 2018]WarmUp</h2><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204754.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看源码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204756.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看source.php</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207756.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="isset"><a href="#isset" class="headerlink" title="isset()"></a>isset()</h5><p><strong>检测变量是否已设置并且非 NULL</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">isset</span> ( <span class="hljs-keyword">mixed</span> <span class="hljs-variable">$var</span> [, <span class="hljs-keyword">mixed</span> $... ] ) : <span class="hljs-keyword">bool</span> <br><span class="hljs-comment">//mixed 说明一个参数可以接受多种不同的（但不一定是所有的）类型</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查找 string 在一个 string 中首次出现的位置。基于字符数执行一个多字节安全的 strpos() 操作。 第一个字符的位置是 0，第二个字符的位置是 1，以此类推。</p>
+<p>如果一次传入多个参数，则检测所有的变量都已设置且不是<code>NULL</code>才会返回<code>TRUE</code>，若检测到的有一个变量未设置或为<code>NULL</code>，则立即返回<code>FALSE</code>，并且不继续执行*null 字符<code>(&quot;\0&quot;)</code>并不等同 php 的 NULL 常量</p>
+<p>*<code>var</code>:要检测的变量，<code>...</code>:其他变量。如果 <code>var</code> 存在并且值不是 <code>NULL</code> 则返回 <code>TRUE</code>，否则返回 <code>FALSE</code></p>
+</blockquote>
+<h5 id="mb-strpos"><a href="#mb-strpos" class="headerlink" title="mb_strpos()"></a>mb_strpos()</h5><p><strong>查找第二个参数在第一个参数中首次出现的位置，返回一个 int 型变量</strong></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">mb_strpos ( <span class="hljs-built_in">string</span> $haystack , <span class="hljs-built_in">string</span> $needle [, <span class="hljs-built_in">int</span> $offset = <span class="hljs-number">0</span> [, <span class="hljs-built_in">string</span> $encoding = mb_internal_encoding() ]] ) : <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>haystack</code>要被检查的 string。</p>
+<p><code>needle</code>在 <code>haystack</code> 中查找这个字符串。 和 strpos() 不同的是，数字的值不会被当做字符的顺序值。</p>
+<p><code>offset</code>搜索位置的偏移。如果没有提供该参数，将会使用 0。负数的 offset 会从字符串尾部开始统计。</p>
+<p><code>encoding</code> <code>encoding</code> 参数为字符编码。如果省略，则使用内部字符编码。</p>
+</blockquote>
+<h5 id="mb-substr"><a href="#mb-substr" class="headerlink" title="mb_substr()"></a>mb_substr()</h5><p><strong>获取部分字符串</strong></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">mb_substr ( <span class="hljs-built_in">string</span> $str , <span class="hljs-built_in">int</span> $start [, <span class="hljs-built_in">int</span> $length = <span class="hljs-literal">NULL</span> [, <span class="hljs-built_in">string</span> $encoding = mb_internal_encoding() ]] ) : <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据字符数执行一个多字节安全的 substr() 操作。 位置是从 str 的开始位置进行计数。 第一个字符的位置是 0。第二个字符的位置是 1，以此类推。 </p>
+<p>参数：$str 是被提取的参数</p>
+<p>$start：若为正数，从 str 开始第 start 位开始提取；若是负数，从末尾第 start 位开始提取</p>
+<p>$length：提取的长度，此参数若忽略或设置为 null，则提取到字符串末尾</p>
+<p>$encoding:字符编码，若省略，则使用内部字符编码</p>
+<p>返回一个字符串，值为 start 和 length 指定部分</p>
+</blockquote>
+<p>注释过后的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">emmm</span></span><br><span class="hljs-class">    </span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkFile</span>(<span class="hljs-params">&amp;<span class="hljs-variable">$page</span></span>)</span><br><span class="hljs-function">        </span>&#123;<br>            <span class="hljs-comment">//验证白名单</span><br>            <span class="hljs-variable">$whitelist</span> = [<span class="hljs-string">&quot;source&quot;</span>=&gt;<span class="hljs-string">&quot;source.php&quot;</span>,<span class="hljs-string">&quot;hint&quot;</span>=&gt;<span class="hljs-string">&quot;hint.php&quot;</span>];<br>            <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$page</span>) || !<span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$page</span>)) &#123;<br>                <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;you can&#x27;t see it&quot;</span>;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<span class="hljs-comment">//如果传进来的file变量不是非空已设置或者不是字符串，会返回false</span><br>            <span class="hljs-comment">//传入参数(&amp;$page)</span><br><br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$page</span>, <span class="hljs-variable">$whitelist</span>)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;。<span class="hljs-comment">//如果传入的file参数在whitelist里，回返回真，这里就知道，file参数的值该是上面两个之一</span><br><br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">mb_substr</span>(//提取字符串<br>                <span class="hljs-variable">$page</span>,<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-title function_ invoke__">mb_strpos</span>(<span class="hljs-variable">$page</span> . <span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string">&#x27;?&#x27;</span>)<br>                //括号里<span class="hljs-string">&quot;.&quot;</span>是连接两个字符串<br>                //mb_strpos函数，查找第二个参数在第一个参数中首次出现的位置<br>                //这里知道第三个参数length=传入字符串长度（因为第一个位置是<span class="hljs-number">0</span><br>                //但是这里如果加入?就会起到截断的作用<br>            );<br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$_page</span>, <span class="hljs-variable">$whitelist</span>)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                <span class="hljs-comment">//如果变量_page（传入参数被截过的部分）在白名单里，可以返回true</span><br>            &#125;<br><br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">urldecode</span>(<span class="hljs-variable">$page</span>);<span class="hljs-comment">//url解码，按规则解码已编码的url字符串，所以构造payload的时候可以考虑用url编码的方式绕过</span><br>            <br>            <span class="hljs-variable">$_page</span> = <span class="hljs-title function_ invoke__">mb_substr</span>(<br>                <span class="hljs-variable">$_page</span>,<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-title function_ invoke__">mb_strpos</span>(<span class="hljs-variable">$_page</span> . <span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string">&#x27;?&#x27;</span>)<br>            );<br>            <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$_page</span>, <span class="hljs-variable">$whitelist</span>)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;you can&#x27;t see it&quot;</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br><span class="hljs-comment">//下面是主函数部分</span><br><span class="hljs-comment">//$_REQUEST[&#x27;file&#x27;] 获取传递的参数file中存储的值</span><br>    <span class="hljs-keyword">if</span> (! <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;file&#x27;</span>])<span class="hljs-comment">//传入参数不能为空</span><br>        &amp;&amp; <span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;file&#x27;</span>])<span class="hljs-comment">//检查是否是字符串</span><br>        &amp;&amp; emmm::<span class="hljs-title function_ invoke__">checkFile</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;file&#x27;</span>])<br>                <span class="hljs-comment">//调用emmm类中的checkFile函数</span><br>    ) &#123;  <span class="hljs-comment">//所以，不进入else分支，可以调用include函数读取传入文件。这里要满足if中的条件为真</span><br>        <span class="hljs-keyword">include</span> <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;file&#x27;</span>]; <span class="hljs-comment">//include文件读取函数是直接读取file</span><br>        <span class="hljs-keyword">exit</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;<br>        <span class="hljs-comment">//从这里发现是刚才页面的源码</span><br>    &#125;  <br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>构造payload，?file&#x3D;hint.php?&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;ffffllllaaaagggg</p>
+<p>原因：</p>
+<p>hint.php?因为mb_substr对page变量进行截取，截取到第一个？故构造为此，使之可通过第二个白名单判断，返回true，从而满足主函数的if判断</p>
+<p>又因为flag不在hint.php中，故加上&#x2F;使之成为目录，再逐层往上，flag一般放在根目录下，因为我们当前的source.php一般是在html目录下，往上是www，var，然后到根目录，flag一般就放在根目录下面，这里还有一个hint.php?&#x2F;或者source.php?&#x2F;，因此需要返回四层才能到根目录。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207643.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="极客大挑战-2019-Knife"><a href="#极客大挑战-2019-Knife" class="headerlink" title="[极客大挑战 2019]Knife"></a>[极客大挑战 2019]Knife</h2><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204091.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="中国蚁剑的使用方法及对一句话木马的理解"><a href="#中国蚁剑的使用方法及对一句话木马的理解" class="headerlink" title="中国蚁剑的使用方法及对一句话木马的理解"></a>中国蚁剑的使用方法及对一句话木马的理解</h5><p>根据题目提示knife即菜刀，加上eval($_POST[“Syc”])，知道此题考察中国菜刀和中国蚁剑的使用方法及对一句话木马的理解</p>
+<p>打开中国蚁剑，连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207469.png" srcset="/img/loading.gif" lazyload></p>
+<p>直接在根目录找flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180207330.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SWPUCTF-2021-新生赛-no-wakeup"><a href="#SWPUCTF-2021-新生赛-no-wakeup" class="headerlink" title="[SWPUCTF 2021 新生赛]no_wakeup"></a>[SWPUCTF 2021 新生赛]no_wakeup</h2><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204207.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="反序列化及-wake方法绕过"><a href="#反序列化及-wake方法绕过" class="headerlink" title="反序列化及_wake方法绕过"></a>反序列化及_wake方法绕过</h5><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180208750.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204969.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SWPUCTF-2021-新生赛-PseudoProtocols"><a href="#SWPUCTF-2021-新生赛-PseudoProtocols" class="headerlink" title="[SWPUCTF 2021 新生赛]PseudoProtocols"></a>[SWPUCTF 2021 新生赛]PseudoProtocols</h2><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209913.png" srcset="/img/loading.gif" lazyload></p>
+<p>看到Url中有一参数，并且页面提示让我们找hint.php，故传入wllm&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;hint.php</p>
+<p>得到base64编码过后的内容<img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204931.png" srcset="/img/loading.gif" lazyload></p>
+<p>解码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209889.png" srcset="/img/loading.gif" lazyload></p>
+<p>告诉我们打开test2222222222222.php</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180209335.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过get传入参数a，并且a文件中内容为I want flag。存在文件包含漏洞</p>
+<h5 id="一、data：-伪协议"><a href="#一、data：-伪协议" class="headerlink" title="一、data：&#x2F;&#x2F;伪协议"></a>一、data：&#x2F;&#x2F;伪协议</h5><p>可利用data:&#x2F;&#x2F;伪协议实现，传入a&#x3D;data:&#x2F;&#x2F;text&#x2F;plian,I want flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204438.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="二、php-input伪协议"><a href="#二、php-input伪协议" class="headerlink" title="二、php:&#x2F;&#x2F;input伪协议"></a>二、php:&#x2F;&#x2F;input伪协议</h5><p>也可利用php:&#x2F;&#x2F;input伪协议实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210186.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204644.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="LitCTF-2023-PHP是世界上最好的语言！！"><a href="#LitCTF-2023-PHP是世界上最好的语言！！" class="headerlink" title="[LitCTF 2023]PHP是世界上最好的语言！！"></a>[LitCTF 2023]PHP是世界上最好的语言！！</h2><h5 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h5><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210509.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204357.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SWPUCTF-2021-新生赛-caidao"><a href="#SWPUCTF-2021-新生赛-caidao" class="headerlink" title="[SWPUCTF 2021 新生赛]caidao"></a>[SWPUCTF 2021 新生赛]caidao</h2><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204532.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="蚁剑连接"><a href="#蚁剑连接" class="headerlink" title="蚁剑连接"></a>蚁剑连接</h5><p>找flag即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204826.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SWPUCTF-2021-新生赛-easyrce"><a href="#SWPUCTF-2021-新生赛-easyrce" class="headerlink" title="[SWPUCTF 2021 新生赛]easyrce"></a>[SWPUCTF 2021 新生赛]easyrce</h2><h5 id="RCE-远程代码执行漏洞-原理及漏洞利用"><a href="#RCE-远程代码执行漏洞-原理及漏洞利用" class="headerlink" title="RCE(远程代码执行漏洞)原理及漏洞利用"></a>RCE(远程代码执行漏洞)原理及漏洞利用</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46706771/article/details/118893434">RCE(远程代码执行漏洞)原理及漏洞利用-CSDN博客</a></p>
+<h5 id="eval-函数"><a href="#eval-函数" class="headerlink" title="eval()  函数"></a>eval()  函数</h5><p>eval()  是⼀个内置的 PHP  函数，⽤于执⾏⼀段 PHP  代码。这个函数接受⼀个字符串参 数，该参数是要执⾏的 PHP  代码，并执⾏它</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/TCS1164/article/details/17222725">PHP eval函数使用介绍_php eval(phpinfo)-CSDN博客</a></p>
+<h5 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h5><p> system()  是 PHP  中⽤于执⾏外部程序并显⽰输出的⼀个函数。这个函数接受⼀个字符串 参数，该参数是要执⾏的命令，然后在 Web  服务器上执⾏这个命令。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mel"><span class="hljs-keyword">system</span>(<span class="hljs-keyword">string</span> $command, <span class="hljs-keyword">int</span> &amp;$return_var);<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>$command :  要执⾏的命令。 &amp;$return_var  （可选）：此变量将填充执⾏命令后的返回状态。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014265398/article/details/108393748">php调用系统底层的4个方法-system , shell_exec , exec , passthru_php syste echo shell-CSDN博客</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180210966.png" srcset="/img/loading.gif" lazyload></p>
+<p>看代码，尝试传入url&#x3D;system(“ls &#x2F;“);</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180211882.png" srcset="/img/loading.gif" lazyload></p>
+<p>拿到flag存在文件，直接cat</p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204496.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SWPUCTF-2021-新生赛-Do-you-know-http"><a href="#SWPUCTF-2021-新生赛-Do-you-know-http" class="headerlink" title="[SWPUCTF 2021 新生赛]Do_you_know_http"></a>[SWPUCTF 2021 新生赛]Do_you_know_http</h2><h5 id="user-agent和xff"><a href="#user-agent和xff" class="headerlink" title="user-agent和xff"></a>user-agent和xff</h5><p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204016.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180211866.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mo-shengl/imagebed@main/img/202407180204130.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/07/18/0718/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 18, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/18/0717/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"f81xBpL4hYOBPvNF7nthVMcV-MdYXbMMI","appKey":"NsLPbgUxRdgjDhWeYobaQYpk","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://f81xbpl4.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
